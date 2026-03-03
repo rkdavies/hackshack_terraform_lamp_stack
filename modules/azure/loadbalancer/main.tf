@@ -28,10 +28,10 @@ resource "azurerm_lb_rule" "http" {
 }
 
 resource "azurerm_lb_probe" "http" {
-  name                = "http-probe"
-  loadbalancer_id     = azurerm_lb.main.id
-  port                = 80
-  protocol            = "Tcp"
+  name            = "http-probe"
+  loadbalancer_id = azurerm_lb.main.id
+  port            = 80
+  protocol        = "Tcp"
 }
 
 resource "azurerm_public_ip" "main" {

@@ -88,7 +88,7 @@ resource "azurerm_nat_gateway" "main" {
 }
 
 resource "azurerm_nat_gateway_public_ip_association" "main" {
-  nat_gateway_id = azurerm_nat_gateway.main.id
+  nat_gateway_id       = azurerm_nat_gateway.main.id
   public_ip_address_id = azurerm_public_ip.nat.id
 }
 
@@ -103,9 +103,9 @@ resource "azurerm_route_table" "main" {
   resource_group_name = azurerm_resource_group.main.name
 
   route {
-    name                   = "default"
-    address_prefix         = "0.0.0.0/0"
-    next_hop_type          = "Internet"
+    name           = "default"
+    address_prefix = "0.0.0.0/0"
+    next_hop_type  = "Internet"
   }
 
   tags = var.tags

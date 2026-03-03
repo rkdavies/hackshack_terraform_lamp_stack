@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
+  }
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
   owners      = ["099720109477"]
@@ -64,4 +72,13 @@ resource "aws_key_pair" "ssh" {
   count      = var.ssh_key_path != "" ? 1 : 0
   key_name   = "lamp-ssh-key"
   public_key = fileexists(var.ssh_key_path) ? file(var.ssh_key_path) : ""
+}
+
+resource "cloudflare_record" "aws" {
+  count   = var.cloudflare_zone_id != "" ? 1 : 0
+  zone_id = var.cloudflare_zone_id
+  name    = "www"
+  value   = aws_instance.web.public_ip
+  type    = "A"
+  proxied = true
 }

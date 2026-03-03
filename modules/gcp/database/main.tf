@@ -4,8 +4,8 @@ resource "google_sql_database_instance" "main" {
   region           = var.region
 
   settings {
-    tier               = var.instance_class
-    availability_type  = "ZONAL"
+    tier              = var.instance_class
+    availability_type = "ZONAL"
 
     ip_configuration {
       ipv4_enabled = true
@@ -15,7 +15,7 @@ resource "google_sql_database_instance" "main" {
     }
 
     backup_configuration {
-      enabled = true
+      enabled    = true
       start_time = "03:00"
     }
   }

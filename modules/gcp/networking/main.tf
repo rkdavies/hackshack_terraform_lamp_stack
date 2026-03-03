@@ -45,9 +45,9 @@ resource "google_compute_router" "main" {
 }
 
 resource "google_compute_router_nat" "main" {
-  name                               = "gcp-lamp-nat"
-  router                             = google_compute_router.main.name
-  region                             = var.region
+  name   = "gcp-lamp-nat"
+  router = google_compute_router.main.name
+  region = var.region
 
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }

@@ -22,3 +22,15 @@ variable "tags" {
   description = "Tags to apply"
   type        = map(string)
 }
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare Zone ID"
+  type        = string
+  default     = ""
+}
+
+variable "cloudflare_domain" {
+  description = "Domain name for DNS"
+  type        = string
+  default     = "hackshack.sh"
+}

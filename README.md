@@ -107,6 +107,46 @@ terraform destroy -var-file=environments/dev/dev.tfvars
 
 ## Configuration Guide
 
+### Cloudflare DNS Configuration
+
+Each compute instance automatically registers a DNS A record in Cloudflare when it comes up.
+
+#### Prerequisites
+
+1. **Cloudflare Account**: You need a Cloudflare account with a domain
+2. **API Token**: Create an API token with the following permissions:
+   - Zone: DNS:Read, DNS:Edit
+   - Select the specific zone you want to use
+
+#### Getting Cloudflare Credentials
+
+1. Log into Cloudflare Dashboard
+2. Go to Profile > API Tokens
+3. Create a new token with DNS:Edit permissions
+4. Get your Zone ID from the Cloudflare Dashboard (overview page)
+
+#### Setting Variables
+
+Add to your `environments/dev/dev.tfvars` or `environments/prod/prod.tfvars`:
+
+```hcl
+cloudflare_api_token = "your-api-token-here"
+cloudflare_zone_id   = "your-zone-id-here"
+cloudflare_domain    = "hackshack.sh"
+```
+
+#### DNS Records Created
+
+The following A records are automatically created:
+
+| Cloud | Record | Points To |
+|-------|--------|-----------|
+| AWS | `www.hackshack.sh` | AWS EC2 Public IP |
+| GCP | `gcp.hackshack.sh` | GCP Instance External IP |
+| Azure | `azure.hackshack.sh` | Azure VM Public IP |
+
+**Note**: The AWS record uses `www` subdomain, while GCP and Azure use `gcp` and `azure` subdomains to avoid conflicts.
+
 ### Changing the Git Repository
 
 The web application is deployed by cloning a Git repository during instance startup. To use a different repository:

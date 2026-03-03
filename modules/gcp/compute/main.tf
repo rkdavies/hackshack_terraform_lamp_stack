@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    cloudflare = {
+      source = "cloudflare/cloudflare"
+    }
+  }
+}
+
 resource "google_compute_instance" "web" {
   name         = "gcp-lamp-web"
   machine_type = var.instance_type
@@ -20,7 +28,7 @@ resource "google_compute_instance" "web" {
   tags = ["lamp-web"]
 
   metadata = {
-    hostname = "www.hackshack.sh"
+    hostname       = "www.hackshack.sh"
     startup-script = <<-EOF
       #!/bin/bash
       hostnamectl set-hostname www.hackshack.sh
@@ -64,11 +72,20 @@ resource "google_compute_instance" "web" {
 }
 
 resource "google_compute_instance_group" "web" {
-  name        = "gcp-lamp-web-ig"
-  zone        = var.zone
-  instances   = [google_compute_instance.web.id]
+  name      = "gcp-lamp-web-ig"
+  zone      = var.zone
+  instances = [google_compute_instance.web.id]
   named_port {
     name = "http"
     port = 80
   }
+}
+
+resource "cloudflare_record" "gcp" {
+  count   = var.cloudflare_zone_id != "" ? 1 : 0
+  zone_id = var.cloudflare_zone_id
+  name    = "www"
+  value   = google_compute_instance.web.network_interface[0].access_config[0].nat_ip
+  type    = "A"
+  proxied = true
 }

@@ -32,3 +32,15 @@ variable "resource_group_name" {
   description = "Resource group name"
   type        = string
 }
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare Zone ID"
+  type        = string
+  default     = ""
+}
+
+variable "cloudflare_domain" {
+  description = "Domain name for DNS"
+  type        = string
+  default     = "hackshack.sh"
+}
