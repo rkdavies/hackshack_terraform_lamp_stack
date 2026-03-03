@@ -142,10 +142,8 @@ The following A records are automatically created:
 | Cloud | Record | Points To |
 |-------|--------|-----------|
 | AWS | `www.hackshack.sh` | AWS EC2 Public IP |
-| GCP | `gcp.hackshack.sh` | GCP Instance External IP |
-| Azure | `azure.hackshack.sh` | Azure VM Public IP |
-
-**Note**: The AWS record uses `www` subdomain, while GCP and Azure use `gcp` and `azure` subdomains to avoid conflicts.
+| GCP | `www.hackshack.sh` | GCP Instance External IP |
+| Azure | `www.hackshack.sh` | Azure VM Public IP |
 
 ### Changing the Git Repository
 
