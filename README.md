@@ -8,17 +8,17 @@ This project demonstrates a multi-cloud infrastructure deployment using Terrafor
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        Multi-Cloud LAMP Stack                       │
 ├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
-│  │     AWS      │  │     GCP      │  │    Azure     │              │
-│  ├──────────────┤  ├──────────────┤  ├──────────────┤              │
-│  │   VPC/Subnet │  │   VPC/Subnet │  │   VNet/Subnet│              │
-│  │   EC2        │  │   Compute    │  │   VM         │              │
-│  │   RDS MySQL  │  │   Cloud SQL  │  │   Azure SQL  │              │
-│  │   ALB        │  │   Cloud LB   │  │   Load Bal.  │              │
-│  └──────────────┘  └──────────────┘  └──────────────┘              │
-│                                                                      │
-│  Each cloud: Virtual Network + Compute + Database + Load Balancer  │
+│                                                                     │
+│   ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
+│   │     AWS      │  │     GCP      │  │    Azure     │              │
+│   ├──────────────┤  ├──────────────┤  ├──────────────┤              │
+│   │   VPC/Subnet │  │   VPC/Subnet │  │   VNet/Subnet│              │
+│   │   EC2        │  │   Compute    │  │   VM         │              │
+│   │   RDS MySQL  │  │   Cloud SQL  │  │   Azure SQL  │              │
+│   │   ALB        │  │   Cloud LB   │  │   Load Bal.  │              │
+│   └──────────────┘  └──────────────┘  └──────────────┘              │
+│                                                                     │
+│  Each cloud: Virtual Network + Compute + Database + Load Balancer   │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
